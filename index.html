@@ -1972,6 +1972,253 @@ html { background-color:#ffffff !important; }
  body.mobile-mode .receipt-order-notes { max-width:none !important; font-size:9px; }
 }
 </style>
+
+<style id="inkahead-expenses-board-footer-alignment">
+/* Keep all Board order actions alongside the order amount, never on an extra row. */
+#orders-board-view .board-order-card .board-order-footer {
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    flex-wrap:nowrap !important;
+    min-width:0 !important;
+    gap:4px !important;
+}
+#orders-board-view .board-order-card .board-order-amount {
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    width:auto !important;
+}
+#orders-board-view .board-order-card .board-order-amount > span {
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+}
+#orders-board-view .board-order-card .board-order-amount > span:first-child {
+    display:block;
+    font-size:10px !important;
+    line-height:1.2;
+    letter-spacing:-0.02em;
+}
+#orders-board-view .board-order-card .board-order-amount > span:nth-child(2) {
+    font-size:8px !important;
+    line-height:1.2;
+}
+#orders-board-view .board-order-card .board-order-actions {
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    flex:0 0 auto !important;
+    flex-wrap:nowrap !important;
+    width:auto !important;
+    gap:2px !important;
+}
+#orders-board-view .board-order-card .board-order-actions button {
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    flex:0 0 20px !important;
+    width:20px !important;
+    height:22px !important;
+    min-width:20px !important;
+    min-height:22px !important;
+    padding:0 !important;
+}
+/* Maintain the single-row footer at every responsive size. The Board itself can scroll. */
+body.desktop-mode #orders-board-view:not(.hidden) {
+    grid-template-columns:repeat(5,minmax(226px,1fr)) !important;
+    overflow-x:auto !important;
+}
+body.mobile-mode #orders-board-view:not(.hidden) {
+    grid-auto-columns:minmax(258px,85%) !important;
+    overflow-x:auto !important;
+}
+body.mobile-mode #orders-board-view .board-order-card .board-order-footer {
+    flex-wrap:nowrap !important;
+}
+body.mobile-mode #orders-board-view .board-order-card .board-order-amount {
+    flex:1 1 auto !important;
+    min-width:0 !important;
+}
+body.mobile-mode #orders-board-view .board-order-card .board-order-actions {
+    width:auto !important;
+    flex:0 0 auto !important;
+}
+body.mobile-mode #orders-board-view .board-order-card .board-order-actions button {
+    flex:0 0 20px !important;
+    width:20px !important;
+    min-width:20px !important;
+    height:22px !important;
+    min-height:22px !important;
+}
+</style>
+
+<style id="inkahead-customer-contacts-single-line">
+/* One continuous, compact contact row in CRM cards and the customer history popup.
+   On narrow phones, swipe the contact row horizontally to read long addresses/emails. */
+#customers-grid .customer-contact-line,
+.customer-history-contacts {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 9px !important;
+    white-space: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+}
+#customers-grid .customer-contact-line::-webkit-scrollbar,
+.customer-history-contacts::-webkit-scrollbar { display: none; }
+#customers-grid .customer-contact-line > span,
+.customer-history-contacts > span {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    gap: 4px !important;
+    min-width: 0;
+    max-width: none;
+    white-space: nowrap !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+}
+#customers-grid .customer-contact-line > span + span::before,
+.customer-history-contacts > span + span::before {
+    content: "•";
+    margin-right: 4px;
+    color: #cbd5e1;
+}
+#customers-grid .customer-contact-line i,
+.customer-history-contacts i {
+    width: auto !important;
+    min-width: 10px;
+    flex: 0 0 auto;
+    font-size: 9px !important;
+}
+.customer-history-contacts { padding: 5px 8px !important; }
+@media (max-width: 767px) {
+    body.mobile-mode #customers-grid .customer-contact-line,
+    body.mobile-mode .customer-history-contacts { gap: 7px !important; }
+    body.mobile-mode #customers-grid .customer-contact-line > span,
+    body.mobile-mode .customer-history-contacts > span { font-size: 9px !important; }
+    body.mobile-mode .customer-history-contacts { padding: 4px 7px !important; }
+}
+</style>
+
+
+<style id="inkahead-refined-navigation-2026">
+/* Consistent tab-menu surfaces, icon hierarchy and badges across desktop and phone. */
+#sidebar { background:#ffffff !important; }
+#sidebar > div:first-child { display:flex; flex-direction:column; min-height:0; flex:1 1 auto; }
+#sidebar #desktop-sidebar-brand { flex:0 0 auto; border-color:#e9eef5; }
+#sidebar #mobile-drawer-header { flex:0 0 auto; background:#ffffff; }
+#sidebar .studio-menu-list {
+  display:flex; flex-direction:column; flex:1 1 auto; min-height:0;
+  overflow-y:auto; overflow-x:hidden; max-height:none; padding:10px 10px 16px;
+  gap:3px; scrollbar-width:thin; scrollbar-color:#cbd5e1 transparent;
+}
+#sidebar .studio-nav-heading {
+  padding:13px 12px 5px; margin:0; color:#94a3b8; font-size:9px;
+  text-transform:uppercase; letter-spacing:.13em; font-weight:850; line-height:1.25;
+}
+#sidebar .studio-nav-item {
+  display:flex; align-items:center; justify-content:space-between;
+  position:relative; gap:7px; width:100%; min-height:41px; padding:5px 9px;
+  border:1px solid transparent; border-radius:12px; background:transparent;
+  color:#475569; text-align:left; cursor:pointer; font-size:11.5px;
+  font-weight:700; transition:background .16s,border-color .16s,color .16s,box-shadow .16s;
+}
+#sidebar .studio-nav-item .studio-nav-leading { display:flex; gap:9px; align-items:center; flex:1 1 auto; min-width:0; }
+#sidebar .studio-nav-item .studio-nav-icon {
+  display:inline-flex; align-items:center; justify-content:center; flex:0 0 29px;
+  width:29px; height:29px; border-radius:9px; background:#f1f5f9;
+  color:#64748b; font-size:12px; transition:background .16s,color .16s;
+}
+#sidebar .studio-nav-label { display:block; flex:1 1 auto; min-width:0; line-height:1.22; }
+#sidebar .studio-nav-item:not(.is-active):hover { background:#f8fafc; border-color:#e2e8f0; color:#0f172a; }
+#sidebar .studio-nav-item:not(.is-active):hover .studio-nav-icon { background:#e2e8f0; color:#334155; }
+#sidebar .studio-nav-item.is-active {
+  background:linear-gradient(95deg,#eaf3ff,#f3f7ff) !important; border-color:#bfdbfe !important;
+  color:#1d4ed8 !important; font-weight:800 !important; box-shadow:0 2px 7px rgba(37,99,235,.055);
+}
+#sidebar .studio-nav-item.is-active::before {
+  content:""; position:absolute; left:-1px; width:3px; height:21px;
+  background:#2563eb; border-radius:0 4px 4px 0;
+}
+#sidebar .studio-nav-item.is-active .studio-nav-icon { background:#dbeafe; color:#1d4ed8; }
+#sidebar .studio-nav-item:focus-visible, #mobile-bottom-nav button:focus-visible {
+  outline:2px solid #2563eb; outline-offset:2px;
+}
+.studio-count-badge {
+  display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto;
+  min-width:22px; height:20px; padding:0 5px; line-height:1;
+  font-size:10px; font-weight:800; border-radius:999px;
+  font-variant-numeric:tabular-nums; letter-spacing:-.02em; white-space:nowrap;
+  border:1px solid rgba(255,255,255,.94);
+}
+.studio-count-badge.hidden { display:none !important; }
+.studio-badge-rose { background:#ffe4e6; color:#9f1239; }
+.studio-badge-blue { background:#dbeafe; color:#1d4ed8; }
+.studio-badge-amber { background:#fef3c7; color:#92400e; }
+.studio-badge-neutral { background:#e2e8f0; color:#475569; }
+#mobile-bottom-nav.studio-bottom-nav {
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(49px,.88fr) minmax(0,1fr) minmax(0,1fr);
+  align-items:center; justify-items:center; gap:3px;
+  width:100%; padding:7px 7px max(8px,env(safe-area-inset-bottom));
+  background:#ffffff; border-top:1px solid #e2e8f0;
+  box-shadow:0 -5px 18px rgba(15,23,42,.055);
+}
+#mobile-bottom-nav .studio-bottom-tab {
+  position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  width:100%; max-width:84px; min-width:0; min-height:50px; gap:4px;
+  padding:6px 1px 5px; border-radius:13px; border:1px solid transparent;
+  color:#64748b; background:transparent; font-weight:700;
+  transition:background .16s,color .16s,border-color .16s;
+}
+#mobile-bottom-nav .studio-bottom-tab > i { font-size:15px; line-height:17px; }
+#mobile-bottom-nav .studio-bottom-tab > span:not(.studio-count-badge) {
+  display:block; font-size:9px; font-weight:750; line-height:1.1; white-space:nowrap;
+  text-overflow:clip; letter-spacing:-.015em;
+}
+#mobile-bottom-nav .studio-bottom-tab.is-active { background:#eff6ff; border-color:#dbeafe; color:#1d4ed8; }
+#mobile-bottom-nav .studio-bottom-tab:active { background:#e2e8f0; }
+#mobile-bottom-nav .studio-bottom-tab .studio-count-badge {
+  position:absolute; top:1px; right:calc(50% - 29px); z-index:2;
+  width:auto; min-width:18px; height:18px; padding:0 4px; font-size:9px;
+  border:2px solid #ffffff; box-shadow:0 1px 3px rgba(15,23,42,.10);
+}
+#mobile-quick-add-btn {
+  align-self:center; justify-self:center; width:46px; height:46px; min-width:46px; min-height:46px;
+  border-radius:15px !important; box-shadow:0 4px 12px rgba(37,99,235,.24);
+  background:linear-gradient(145deg,#3b82f6,#1d4ed8) !important;
+}
+#mobile-quick-add-btn:focus-visible { outline:2px solid #2563eb; outline-offset:2px; }
+#mobile-menu-badge.studio-count-badge {
+  position:absolute; right:-6px; top:-6px; z-index:2;
+  min-width:20px; height:20px; border:2px solid #ffffff;
+  box-shadow:0 1px 3px rgba(15,23,42,.1); padding:0 4px;
+}
+body.mobile-mode #sidebar { width:294px; max-width:86%; box-shadow:-14px 0 35px rgba(15,23,42,.18); }
+body.mobile-mode #sidebar .studio-menu-list { padding:8px 10px 14px; gap:4px; }
+body.mobile-mode #sidebar .studio-nav-heading { padding-top:13px; }
+body.mobile-mode #sidebar .studio-nav-item { min-height:43px; font-size:12px; }
+body.mobile-mode #sidebar #mobile-drawer-header { padding:14px 15px; }
+body.mobile-mode #sidebar .studio-nav-item.mobile-drawer-hide { display:none !important; }
+body.desktop-mode #sidebar { width:256px; }
+body.desktop-mode #mobile-bottom-nav { display:none !important; }
+@media (max-width:359px) {
+  #mobile-bottom-nav.studio-bottom-nav { padding-left:3px; padding-right:3px; gap:0; }
+  #mobile-bottom-nav .studio-bottom-tab > span:not(.studio-count-badge) { font-size:8.5px; }
+  #mobile-bottom-nav .studio-bottom-tab { min-height:48px; }
+  #mobile-quick-add-btn { width:43px; height:43px; min-width:43px; min-height:43px; }
+}
+@media print { #mobile-bottom-nav, #sidebar { display:none !important; } }
+</style>
+
 </head>
 <body class="mobile-mode">
 
@@ -2032,71 +2279,88 @@ html { background-color:#ffffff !important; }
                 </div>
 
                 <!-- Navigation Items -->
-                <nav class="p-3 space-y-1 text-xs font-semibold text-slate-600 overflow-y-auto max-h-[calc(100dvh-130px)]">
-                    <button onclick="switchView('dashboard')" id="nav-dashboard" class="mobile-drawer-hide w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <i class="fa-solid fa-chart-pie w-4 text-center"></i>
-                        <span>Dashboard</span>
-                    </button>
-                    <button onclick="switchView('orders')" id="nav-orders" class="mobile-drawer-hide w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <i class="fa-solid fa-list-check w-4 text-center"></i>
-                        <span>Orders</span>
-                    </button>
-                    <button onclick="switchView('calculator')" id="nav-calculator" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <i class="fa-solid fa-calculator w-4 text-center"></i>
-                        <span>Quote Calculator</span>
-                    </button>
-                    <button onclick="switchView('products')" id="nav-products" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <i class="fa-solid fa-tags w-4 text-center"></i>
-                        <span>Product Library</span>
-                    </button>
-                    <button onclick="switchView('inventory')" id="nav-inventory" class="mobile-drawer-hide w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-boxes-stacked w-4 text-center"></i>
-                            <span>Inventory</span>
-                        </div>
-                        <span id="sidebar-inv-badge" class="hidden px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span>
-                    </button>
-                    <button onclick="switchView('invoices')" id="nav-invoices" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-invoice-dollar w-4 text-center"></i>
-                            <span>Invoices & Receipts</span>
-                        </div>
-                        <span id="sidebar-invoices-badge" class="hidden px-1.5 py-0.5 text-[10px] font-extrabold bg-brand-500 text-white rounded-full">0</span>
-                    </button>
-                    <button onclick="switchView('finance')" id="nav-finance" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-wallet w-4 text-center"></i>
-                            <span>Expenses & COGS</span>
-                        </div>
-                        <span id="sidebar-finance-badge" class="hidden px-1.5 py-0.5 text-[10px] font-extrabold bg-amber-500 text-white rounded-full">0</span>
-                    </button>
-                    <button onclick="switchView('customers')" id="nav-customers" class="mobile-drawer-hide w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-users w-4 text-center"></i>
-                            <span>Customer CRM</span>
-                        </div>
-                        <span id="sidebar-cust-bal-badge" class="hidden px-1.5 py-0.5 text-[10px] font-extrabold bg-amber-500 text-white rounded-full">0</span>
-                    </button>
-                    <button onclick="switchView('resources')" id="nav-resources" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <i class="fa-solid fa-book-open w-4 text-center"></i>
-                        <span>Studio Guides</span>
-                    </button>
-                    <button onclick="switchView('activity')" id="nav-activity" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <i class="fa-solid fa-clock-rotate-left w-4 text-center"></i>
-                        <span>Activity Log</span>
-                    </button>
-                    <button onclick="switchView('trash')" id="nav-trash" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-trash-can w-4 text-center"></i>
-                            <span>Trash Bin</span>
-                        </div>
-                        <span id="sidebar-trash-badge" class="hidden px-1.5 py-0.5 text-[10px] font-bold bg-slate-200 text-slate-700 rounded-full">0</span>
-                    </button>
-                    <button onclick="switchView('settings')" id="nav-settings" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-100 transition-colors text-left">
-                        <i class="fa-solid fa-gear w-4 text-center"></i>
-                        <span>Settings</span>
-                    </button>
-                </nav>
+                <nav class="studio-menu-list" aria-label="Main navigation">
+    <div class="studio-nav-heading mobile-drawer-hide">Overview</div>
+    <button type="button" onclick="switchView('dashboard')" id="nav-dashboard" class="studio-nav-item mobile-drawer-hide" aria-label="Dashboard">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-chart-pie"></i></span>
+            <span class="studio-nav-label">Dashboard</span>
+        </span>
+    </button>
+    <button type="button" onclick="switchView('orders')" id="nav-orders" class="studio-nav-item mobile-drawer-hide" aria-label="Orders">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-list-check"></i></span>
+            <span class="studio-nav-label">Orders</span>
+        </span>
+    </button>
+    <div class="studio-nav-heading">Management</div>
+    <button type="button" onclick="switchView('calculator')" id="nav-calculator" class="studio-nav-item " aria-label="Quote Calculator">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-calculator"></i></span>
+            <span class="studio-nav-label">Quote Calculator</span>
+        </span>
+    </button>
+    <button type="button" onclick="switchView('products')" id="nav-products" class="studio-nav-item " aria-label="Product Library">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-tags"></i></span>
+            <span class="studio-nav-label">Product Library</span>
+        </span>
+    </button>
+    <button type="button" onclick="switchView('inventory')" id="nav-inventory" class="studio-nav-item mobile-drawer-hide" aria-label="Inventory">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-boxes-stacked"></i></span>
+            <span class="studio-nav-label">Inventory</span>
+        </span>
+        <span id="sidebar-inv-badge" class="studio-count-badge studio-badge-rose hidden" aria-live="polite">0</span>
+    </button>
+    <button type="button" onclick="switchView('invoices')" id="nav-invoices" class="studio-nav-item " aria-label="Invoices & Receipts">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+            <span class="studio-nav-label">Invoices & Receipts</span>
+        </span>
+        <span id="sidebar-invoices-badge" class="studio-count-badge studio-badge-blue hidden" aria-live="polite">0</span>
+    </button>
+    <button type="button" onclick="switchView('finance')" id="nav-finance" class="studio-nav-item " aria-label="Expenses & COGS">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-wallet"></i></span>
+            <span class="studio-nav-label">Expenses & COGS</span>
+        </span>
+        <span id="sidebar-finance-badge" class="studio-count-badge studio-badge-amber hidden" aria-live="polite">0</span>
+    </button>
+    <button type="button" onclick="switchView('customers')" id="nav-customers" class="studio-nav-item mobile-drawer-hide" aria-label="Customer CRM">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></span>
+            <span class="studio-nav-label">Customer CRM</span>
+        </span>
+        <span id="sidebar-cust-bal-badge" class="studio-count-badge studio-badge-amber hidden" aria-live="polite">0</span>
+    </button>
+    <div class="studio-nav-heading">Workspace</div>
+    <button type="button" onclick="switchView('resources')" id="nav-resources" class="studio-nav-item " aria-label="Studio Guides">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+            <span class="studio-nav-label">Studio Guides</span>
+        </span>
+    </button>
+    <button type="button" onclick="switchView('activity')" id="nav-activity" class="studio-nav-item " aria-label="Activity Log">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-clock-rotate-left"></i></span>
+            <span class="studio-nav-label">Activity Log</span>
+        </span>
+    </button>
+    <button type="button" onclick="switchView('trash')" id="nav-trash" class="studio-nav-item " aria-label="Trash Bin">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-trash-can"></i></span>
+            <span class="studio-nav-label">Trash Bin</span>
+        </span>
+        <span id="sidebar-trash-badge" class="studio-count-badge studio-badge-neutral hidden" aria-live="polite">0</span>
+    </button>
+    <button type="button" onclick="switchView('settings')" id="nav-settings" class="studio-nav-item " aria-label="Settings">
+        <span class="studio-nav-leading">
+            <span class="studio-nav-icon" aria-hidden="true"><i class="fa-solid fa-gear"></i></span>
+            <span class="studio-nav-label">Settings</span>
+        </span>
+    </button>
+</nav>
             </div>
 
             <div class="p-3 border-t border-slate-100 text-[11px] text-slate-400 space-y-2">
@@ -2123,7 +2387,7 @@ html { background-color:#ffffff !important; }
                     <div class="flex items-center gap-2">
                         <button onclick="openMobileDrawer()" class="relative w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center active:scale-95 transition-transform" title="Open Menu">
                             <i class="fa-solid fa-bars text-sm"></i>
-                            <span id="mobile-menu-badge" class="hidden absolute -top-1 -right-1 px-1 min-w-[16px] h-4 text-[9px] font-extrabold bg-brand-500 text-white rounded-full flex items-center justify-center">0</span>
+                            <span id="mobile-menu-badge" class="studio-count-badge studio-badge-blue hidden">0</span>
                         </button>
                     </div>
                 </div>
@@ -2190,8 +2454,8 @@ html { background-color:#ffffff !important; }
                                     <span class="text-[9px] uppercase font-extrabold text-slate-500 tracking-tight leading-tight block">Quoted</span>
                                     <p id="pipe-quoted" class="text-lg font-extrabold text-slate-800 mt-1">0</p>
                                 </button>
-                                <button onclick="openPipelineStage('In Production')" class="bg-amber-50 hover:bg-amber-100/70 p-2.5 rounded-xl text-left border border-amber-200/70 transition-colors">
-                                    <span class="text-[9px] uppercase font-extrabold text-amber-700 tracking-tight leading-tight block">In Production</span>
+                                <button onclick="openPipelineStage('In Progress')" class="bg-amber-50 hover:bg-amber-100/70 p-2.5 rounded-xl text-left border border-amber-200/70 transition-colors">
+                                    <span class="text-[9px] uppercase font-extrabold text-amber-700 tracking-tight leading-tight block">In Progress</span>
                                     <p id="pipe-production" class="text-lg font-extrabold text-amber-800 mt-1">0</p>
                                 </button>
                                 <button onclick="openPipelineStage('Ready')" class="bg-blue-50 hover:bg-blue-100/70 p-2.5 rounded-xl text-left border border-blue-200/70 transition-colors">
@@ -2276,10 +2540,10 @@ html { background-color:#ffffff !important; }
                         </div>
                         <div class="bg-amber-50/60 p-2.5 rounded-2xl border border-amber-200/60 space-y-2">
                             <div class="flex items-center justify-between px-1 gap-1">
-                                <span class="text-[10px] font-extrabold uppercase tracking-tight text-amber-700 leading-tight">In Production</span>
-                                <span id="count-In Production" class="text-[10px] font-bold bg-white px-1.5 py-0.5 rounded-full border border-amber-200 shrink-0">0</span>
+                                <span class="text-[10px] font-extrabold uppercase tracking-tight text-amber-700 leading-tight">In Progress</span>
+                                <span id="count-In Progress" class="text-[10px] font-bold bg-white px-1.5 py-0.5 rounded-full border border-amber-200 shrink-0">0</span>
                             </div>
-                            <div id="column-In Production" class="space-y-2"></div>
+                            <div id="column-In Progress" class="space-y-2"></div>
                         </div>
                         <div class="bg-blue-50/60 p-2.5 rounded-2xl border border-blue-200/60 space-y-2">
                             <div class="flex items-center justify-between px-1 gap-1">
@@ -2761,27 +3025,27 @@ service cloud.firestore {
 
             </main>
             <!-- Fixed 5-Button Mobile Bottom Navigation Bar (Dashboard, Orders, +, Inventory, Customers) -->
-            <nav id="mobile-bottom-nav" class="bg-white border-t border-slate-200 px-2 py-1.5 flex items-center justify-around shrink-0 z-20 select-none">
-                <button onclick="switchView('dashboard')" id="bnav-dashboard" class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-500">
+            <nav id="mobile-bottom-nav" class="studio-bottom-nav shrink-0 z-20 select-none">
+                <button onclick="switchView('dashboard')" id="bnav-dashboard" class="studio-bottom-tab">
                     <i class="fa-solid fa-chart-pie text-sm"></i>
                     <span class="text-[10px] font-bold mt-0.5">Dashboard</span>
                 </button>
-                <button onclick="switchView('orders')" id="bnav-orders" class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-500">
+                <button onclick="switchView('orders')" id="bnav-orders" class="studio-bottom-tab">
                     <i class="fa-solid fa-list-check text-sm"></i>
                     <span class="text-[10px] font-bold mt-0.5">Orders</span>
                 </button>
                 <button id="mobile-quick-add-btn" onclick="openContextAddMenu()" class="w-11 h-11 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/30 active:scale-95 transition-transform" title="Quick Add" aria-label="Quick Add">
                     <i class="fa-solid fa-plus text-base"></i>
                 </button>
-                <button onclick="switchView('inventory')" id="bnav-inventory" class="relative flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-500">
+                <button onclick="switchView('inventory')" id="bnav-inventory" class="studio-bottom-tab">
                     <i class="fa-solid fa-boxes-stacked text-sm"></i>
                     <span class="text-[10px] font-bold mt-0.5">Inventory</span>
-                    <span id="bnav-inv-badge" class="hidden absolute top-0.5 right-2 px-1 min-w-[16px] h-4 text-[9px] font-extrabold bg-rose-500 text-white rounded-full flex items-center justify-center">0</span>
+                    <span id="bnav-inv-badge" class="studio-count-badge studio-badge-rose hidden">0</span>
                 </button>
-                <button onclick="switchView('customers')" id="bnav-customers" class="relative flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-500">
+                <button onclick="switchView('customers')" id="bnav-customers" class="studio-bottom-tab">
                     <i class="fa-solid fa-users text-sm"></i>
                     <span class="text-[10px] font-bold mt-0.5">Customers</span>
-                    <span id="bnav-cust-badge" class="hidden absolute top-0.5 right-2 px-1 min-w-[16px] h-4 text-[9px] font-extrabold bg-amber-500 text-white rounded-full flex items-center justify-center">0</span>
+                    <span id="bnav-cust-badge" class="studio-count-badge studio-badge-amber hidden">0</span>
                 </button>
             </nav>
         </div>
@@ -2795,7 +3059,7 @@ service cloud.firestore {
     <!-- ================= APPLICATION LOGIC ================= -->
     <script>
         const DB_KEY = 'ink_ahead_studio_db_v2_clean';
-        const ORDER_STAGES = ['Quoted', 'In Production', 'Ready', 'Payment Pending', 'Completed'];
+        const ORDER_STAGES = ['Quoted', 'In Progress', 'Ready', 'Payment Pending', 'Completed'];
         const getOrderStageLabel = stage => stage === 'Payment Pending' ? 'Pending' : stage;
         let mobileOrderFilter = 'All';
         // 'auto' preserves the original responsive default (List on phones, Board on desktop).
@@ -2911,11 +3175,23 @@ service cloud.firestore {
             return normalizeLinkText(record.customer) === normalizeLinkText(customer.name);
         }
 
+        // Compatibility: existing local/cloud/backup orders may still have the old stage value.
+        // Only change status values, not financial records or the original activity history.
+        function migrateLegacyOrderStageNames() {
+            const legacy = ['In', 'Production'].join(' ');
+            const update = o => { if (o && o.status === legacy) o.status = 'In Progress'; };
+            (appState.orders || []).forEach(update);
+            (appState.trash || []).forEach(entry => {
+                if (entry && entry.type === 'Order' && entry.data) update(entry.data);
+            });
+        }
+
         // Backfill stable IDs for older records that were previously linked by display name.
         function normalizeRelationshipIds() {
             ['inventory', 'products', 'orders', 'invoices', 'customers', 'trash'].forEach(key => {
                 if (!Array.isArray(appState[key])) appState[key] = [];
             });
+            migrateLegacyOrderStageNames();
 
             appState.products.forEach(product => {
                 (Array.isArray(product.materials) ? product.materials : []).forEach(material => {
@@ -3543,25 +3819,16 @@ service cloud.firestore {
                 const el = document.getElementById('view-' + v);
                 if (el) el.classList.toggle('hidden', v !== viewId);
 
+                // One consistent active-state treatment for desktop, drawer and bottom tabs.
                 const navBtn = document.getElementById('nav-' + v);
-                if (navBtn) {
-                    if (v === viewId) {
-                        navBtn.classList.add('bg-blue-50', 'text-brand-600', 'font-bold');
-                        navBtn.classList.remove('text-slate-600');
-                    } else {
-                        navBtn.classList.remove('bg-blue-50', 'text-brand-600', 'font-bold');
-                        navBtn.classList.add('text-slate-600');
-                    }
-                }
-
                 const bnavBtn = document.getElementById('bnav-' + v);
-                if (bnavBtn) {
-                    if (v === viewId) {
-                        bnavBtn.className = 'relative flex flex-col items-center justify-center py-1 px-3 rounded-xl bg-blue-50 text-brand-600';
-                    } else {
-                        bnavBtn.className = 'relative flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-500';
-                    }
-                }
+                [navBtn, bnavBtn].forEach(btn => {
+                    if (!btn) return;
+                    const active = v === viewId;
+                    btn.classList.toggle('is-active', active);
+                    if (active) btn.setAttribute('aria-current', 'page');
+                    else btn.removeAttribute('aria-current');
+                });
             });
 
             const topActBtn = document.getElementById('mobile-top-activity-btn');
@@ -3715,63 +3982,32 @@ service cloud.firestore {
             updateDesktopHeaderActions(appState.currentView || 'dashboard');
         }
 
+        function setStudioBadge(id, count, label) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const n = Math.max(0, Math.floor(Number(count) || 0));
+            el.textContent = n > 99 ? '99+' : String(n);
+            el.classList.toggle('hidden', n === 0);
+            el.title = `${n.toLocaleString()} ${label}`;
+            el.setAttribute('aria-label', `${n.toLocaleString()} ${label}`);
+        }
+
         function updateBadges() {
             const lowCount = appState.inventory.filter(i => Number(i.stock) <= Number(i.minStock ?? 5)).length;
-            const sBadge = document.getElementById('sidebar-inv-badge');
-            const bBadge = document.getElementById('bnav-inv-badge');
-            if (sBadge) {
-                sBadge.innerText = lowCount;
-                sBadge.classList.toggle('hidden', lowCount === 0);
-            }
-            if (bBadge) {
-                bBadge.innerText = lowCount;
-                bBadge.classList.toggle('hidden', lowCount === 0);
-            }
-
-            const invBadge = document.getElementById('sidebar-invoices-badge');
+            setStudioBadge('sidebar-inv-badge', lowCount, 'low-stock materials');
+            setStudioBadge('bnav-inv-badge', lowCount, 'low-stock materials');
             const unreadInv = Number(appState.unreadInvoicesCount || 0);
-            if (invBadge) {
-                invBadge.innerText = unreadInv;
-                invBadge.classList.toggle('hidden', unreadInv === 0);
-            }
-
-            const finBadge = document.getElementById('sidebar-finance-badge');
             const unreadFin = Number(appState.unreadExpensesCount || 0);
-            if (finBadge) {
-                finBadge.innerText = unreadFin;
-                finBadge.classList.toggle('hidden', unreadFin === 0);
-            }
-
-            const mobMenuBadge = document.getElementById('mobile-menu-badge');
-            const totalDrawerUnread = unreadInv + unreadFin;
-            if (mobMenuBadge) {
-                mobMenuBadge.innerText = totalDrawerUnread;
-                mobMenuBadge.classList.toggle('hidden', totalDrawerUnread === 0);
-            }
-
-            // Customers with Unpaid Balance badge
+            setStudioBadge('sidebar-invoices-badge', unreadInv, 'new invoices');
+            setStudioBadge('sidebar-finance-badge', unreadFin, 'new expenses');
+            setStudioBadge('mobile-menu-badge', unreadInv + unreadFin, 'new invoices and expenses');
             const custWithBalCount = appState.customers.filter(c => getCustomerBalance(c.name) > 0).length;
-            const bnavCustBadge = document.getElementById('bnav-cust-badge');
-            const sideCustBadge = document.getElementById('sidebar-cust-bal-badge');
-            if (bnavCustBadge) {
-                bnavCustBadge.innerText = custWithBalCount;
-                bnavCustBadge.classList.toggle('hidden', custWithBalCount === 0);
-            }
-            if (sideCustBadge) {
-                sideCustBadge.innerText = custWithBalCount;
-                sideCustBadge.classList.toggle('hidden', custWithBalCount === 0);
-            }
-
+            setStudioBadge('bnav-cust-badge', custWithBalCount, 'customers with balances');
+            setStudioBadge('sidebar-cust-bal-badge', custWithBalCount, 'customers with balances');
             const archivedCount = (appState.orders || []).filter(o => Boolean(o.archivedAt) && o.status === 'Completed').length;
             const archivedInlineCount = document.getElementById('archived-orders-count-inline');
             if (archivedInlineCount) archivedInlineCount.textContent = archivedCount;
-
-            const tBadge = document.getElementById('sidebar-trash-badge');
-            if (tBadge) {
-                const tCount = (appState.trash || []).length;
-                tBadge.innerText = tCount;
-                tBadge.classList.toggle('hidden', tCount === 0);
-            }
+            setStudioBadge('sidebar-trash-badge', (appState.trash || []).length, 'items in Trash');
         }
 
         // ================= VIEW 1: DASHBOARD =================
@@ -3814,12 +4050,12 @@ service cloud.firestore {
             document.getElementById('dash-receivables').innerText = `₱${groupThousands(receivables.toFixed(2))}`;
             document.getElementById('dash-margin').innerText = `${margin}% Margin`;
 
-            const counts = { Quoted: 0, 'In Production': 0, Ready: 0, 'Payment Pending': 0, Completed: 0 };
+            const counts = { Quoted: 0, 'In Progress': 0, Ready: 0, 'Payment Pending': 0, Completed: 0 };
             appState.orders.forEach(o => {
                 if (!o.archivedAt && counts[o.status] !== undefined) counts[o.status]++;
             });
             document.getElementById('pipe-quoted').innerText = counts['Quoted'];
-            document.getElementById('pipe-production').innerText = counts['In Production'];
+            document.getElementById('pipe-production').innerText = counts['In Progress'];
             document.getElementById('pipe-ready').innerText = counts['Ready'];
             const pipePayEl = document.getElementById('pipe-payment-pending');
             if (pipePayEl) pipePayEl.innerText = counts['Payment Pending'];
@@ -3831,9 +4067,9 @@ service cloud.firestore {
                 const todayStr = new Date().toISOString().slice(0, 10);
                 const todayMs = new Date(todayStr + 'T00:00:00').getTime();
 
-                // Only notify for orders that have a targetDate and are still in 'Quoted' or 'In Production'
+                // Only notify for orders that have a targetDate and are still in 'Quoted' or 'In Progress'
                 const pendingDeadlineOrders = appState.orders
-                    .filter(o => o.targetDate && (o.status === 'Quoted' || o.status === 'In Production'))
+                    .filter(o => o.targetDate && (o.status === 'Quoted' || o.status === 'In Progress'))
                     .map(o => {
                         const targetMs = new Date(o.targetDate + 'T00:00:00').getTime();
                         const diffDays = Math.round((targetMs - todayMs) / (1000 * 60 * 60 * 24));
@@ -4418,7 +4654,7 @@ service cloud.firestore {
                     id: 'exp-cogs-' + Date.now(),
                     orderNo: ordNo,
                     date: new Date().toISOString().slice(0, 10),
-                    description: `[${ordNo}] Material COGS — ${ord.customer} (${ord.product})`,
+                    description: `${ord.customer} (${ord.product})`,
                     category: 'Material COGS',
                     amount: cogsTotal
                 });
@@ -4625,7 +4861,7 @@ service cloud.firestore {
                         <div>
                             <label class="block font-bold uppercase text-slate-600 mb-1">Stage</label>
                             <select id="ord-status" class="w-full px-3 py-2 border rounded-xl outline-none font-semibold bg-white">
-                                ${['Quoted', 'In Production', 'Ready', 'Payment Pending'].map(st => `<option value="${st}" ${existing && existing.status === st ? 'selected' : (!existing && st === 'In Production' ? 'selected' : '')}>${getOrderStageLabel(st)}</option>`).join('')}
+                                ${['Quoted', 'In Progress', 'Ready', 'Payment Pending'].map(st => `<option value="${st}" ${existing && existing.status === st ? 'selected' : (!existing && st === 'In Progress' ? 'selected' : '')}>${getOrderStageLabel(st)}</option>`).join('')}
                             </select>
                         </div>
                     </div>
@@ -7312,6 +7548,20 @@ service cloud.firestore {
             document.getElementById('modal-backdrop').classList.remove('hidden');
         }
 
+        // Only normalize the visible description of auto-generated COGS entries. The order badge
+        // and category above it already contain this information. Existing records remain intact.
+        function expenseDisplayDescription(expense) {
+            const raw = String(expense?.description || '');
+            if (String(expense?.category || '').toLowerCase() !== 'material cogs') return raw;
+            const simplified = raw.replace(/^\s*(?:\[[^\]]+\]\s*)?material\s+cogs\s*[-–—:]\s*/i, '').trim();
+            // Extra safety: an old auto-entry can contain an order prefix even without the label.
+            if (simplified !== raw.trim()) return simplified || raw;
+            if (expense?.orderNo) {
+                return raw.replace(/^\s*\[[^\]]+\]\s*/, '').trim() || raw;
+            }
+            return raw;
+        }
+
         // ================= VIEW 7: EXPENSES & COGS LEDGER =================
         function renderFinance() {
             const wrap = document.getElementById('expenses-list-wrap');
@@ -7324,7 +7574,7 @@ service cloud.firestore {
             const searchWords = query.split(/\s+/).filter(Boolean);
             const matchingExpenses = appState.expenses.filter(x => {
                 if (!searchWords.length) return true;
-                const searchable = [x.description, x.category || 'Expense', x.orderNo, x.date,
+                const searchable = [x.description, expenseDisplayDescription(x), x.category || 'Expense', x.orderNo, x.date,
                     Number(x.amount || 0).toFixed(2), groupThousands(Number(x.amount || 0).toFixed(2))]
                     .filter(v => v != null).join(' ').toLowerCase();
                 return searchWords.every(word => searchable.includes(word));
@@ -7341,7 +7591,7 @@ service cloud.firestore {
                             <span class="text-[10px] font-bold uppercase text-slate-400">${x.category || 'Expense'}</span>
                             <span class="text-[10px] text-slate-400">• ${x.date || ''}</span>
                         </div>
-                        <h4 class="expense-entry-description font-bold text-slate-900 mt-0.5 break-words">${x.description}</h4>
+                        <h4 class="expense-entry-description font-bold text-slate-900 mt-0.5 break-words">${safeDisplay(expenseDisplayDescription(x))}</h4>
                     </div>
                     <div class="expense-entry-actions flex items-center gap-2 shrink-0">
                         <span class="expense-entry-amount font-extrabold text-rose-600 text-sm">-₱${groupThousands(Number(x.amount || 0).toFixed(2))}</span>
@@ -7554,11 +7804,11 @@ service cloud.firestore {
                                     </button>
                                 </div>
                             </div>
-                            <div class="text-[11px] text-slate-600 space-y-0.5 pt-1 border-t border-slate-100">
-                                ${c.phone ? `<div class="truncate"><i class="fa-solid fa-phone w-3.5 text-slate-400 text-[10px]"></i>${c.phone}</div>` : ''}
-                                ${c.address ? `<div class="truncate"><i class="fa-solid fa-location-dot w-3.5 text-slate-400 text-[10px]"></i>${c.address}</div>` : ''}
-                                ${c.email ? `<div class="truncate"><i class="fa-solid fa-envelope w-3.5 text-slate-400 text-[10px]"></i>${c.email}</div>` : ''}
-                                ${!c.phone && !c.address && !c.email ? `<div class="text-[10px] text-slate-400 italic">No contact info added</div>` : ''}
+                            <div class="customer-contact-line number-format-raw text-[10px] text-slate-600 pt-1 border-t border-slate-100" aria-label="Customer contact details">
+                                ${c.phone ? `<span><i class="fa-solid fa-phone text-slate-400" aria-hidden="true"></i>${c.phone}</span>` : ''}
+                                ${c.address ? `<span><i class="fa-solid fa-location-dot text-slate-400" aria-hidden="true"></i>${c.address}</span>` : ''}
+                                ${c.email ? `<span><i class="fa-solid fa-envelope text-slate-400" aria-hidden="true"></i>${c.email}</span>` : ''}
+                                ${!c.phone && !c.address && !c.email ? `<span class="text-slate-400 italic">No contact info added</span>` : ''}
                             </div>
                         </div>
                     </div>
@@ -7582,10 +7832,11 @@ service cloud.firestore {
                         </div>
                         <button type="button" onclick="closeModal()" class="customer-history-close" title="Close" aria-label="Close customer history"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="customer-history-contacts">
-                        <div><i class="fa-solid fa-phone"></i><span>${cust.phone || 'No phone'}</span></div>
-                        <div><i class="fa-solid fa-location-dot"></i><span>${cust.address || 'No address saved'}</span></div>
-                        <div><i class="fa-solid fa-envelope"></i><span>${cust.email || 'No email'}</span></div>
+                    <div class="customer-history-contacts number-format-raw" aria-label="Customer contact details">
+                        ${cust.phone ? `<span><i class="fa-solid fa-phone" aria-hidden="true"></i>${cust.phone}</span>` : ''}
+                        ${cust.address ? `<span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>${cust.address}</span>` : ''}
+                        ${cust.email ? `<span><i class="fa-solid fa-envelope" aria-hidden="true"></i>${cust.email}</span>` : ''}
+                        ${!cust.phone && !cust.address && !cust.email ? `<span class="italic text-slate-400">No contact info added</span>` : ''}
                     </div>
                     <div class="customer-history-stats">
                         <div class="customer-history-stat" style="background:#ecfdf5;border-color:#a7f3d0;color:#065f46">
@@ -7858,6 +8109,11 @@ service cloud.firestore {
             renderActivityLog();
         }
 
+        function showCurrentStageLabel(value) {
+            const legacy = ['In', 'Production'].join(' ');
+            return String(value ?? '').split(legacy).join('In Progress');
+        }
+
         function renderActivityLog() {
             const cats = ['All', 'Orders', 'Inventory', 'Finance', 'Products', 'Customers', 'System'];
             const bar = document.getElementById('activity-category-bar');
@@ -7874,7 +8130,7 @@ service cloud.firestore {
             const q = (document.getElementById('activity-search')?.value || '').toLowerCase();
             const filtered = (appState.activityLog || []).filter(a => {
                 const matchCat = activeActivityCategory === 'All' || a.category === activeActivityCategory;
-                const matchQ = !q || (a.action || '').toLowerCase().includes(q) || (a.details || '').toLowerCase().includes(q);
+                const matchQ = !q || showCurrentStageLabel(a.action).toLowerCase().includes(q) || showCurrentStageLabel(a.details).toLowerCase().includes(q);
                 return matchCat && matchQ;
             });
 
@@ -7893,8 +8149,8 @@ service cloud.firestore {
                                 <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-extrabold uppercase">${a.category || 'Log'}</span>
                                 <span class="text-[10px] text-slate-400">${formatted}</span>
                             </div>
-                            <h4 class="font-bold text-slate-900 mt-1">${a.action}</h4>
-                            <p class="text-slate-600 text-[11px] mt-0.5">${a.details || ''}</p>
+                            <h4 class="font-bold text-slate-900 mt-1">${safeDisplay(showCurrentStageLabel(a.action))}</h4>
+                            <p class="text-slate-600 text-[11px] mt-0.5">${safeDisplay(showCurrentStageLabel(a.details))}</p>
                         </div>
                     </div>
                 `;
